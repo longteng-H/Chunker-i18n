@@ -56,7 +56,8 @@ npm run publish
 > 提示：Electron 打包需要 `cli\build\libs\packaged` 目录下有已打包的 Java 后端
 > （可用 `gradlew build` 从源码生成，或从上游 Release 的 zip 中提取 `resources\chunker-cli`）。
 
-完整的汉化技术文档（架构设计、词条维护、踩坑记录）见 [I18N.md](I18N.md)。
+完整的汉化技术文档（架构设计、词条维护、踩坑记录）见 [I18N.md](I18N.md)；
+上游更新时的快速汉化与构建操作手册见 [DEVELOPMENT.md](DEVELOPMENT.md)。
 
 ### 🔄 与上游同步
 
@@ -118,7 +119,8 @@ cd app\electron; npm install; npm run publish   # output in app\electron\dist\
 
 Electron packaging expects a packaged Java backend at `cli\build\libs\packaged`
 (build it with `gradlew build`, or extract `resources\chunker-cli` from an upstream release zip).
-See [I18N.md](I18N.md) for the full localization engineering notes (in Chinese).
+See [I18N.md](I18N.md) for the full localization engineering notes (in Chinese), and
+[DEVELOPMENT.md](DEVELOPMENT.md) for the upstream-sync & build runbook (in Chinese).
 
 ### Syncing with Upstream
 
@@ -182,7 +184,8 @@ npm run publish
 > 提示：Electron 封裝需要 `cli\build\libs\packaged` 目錄下有已封裝的 Java 後端
 > （可用 `gradlew build` 從原始碼產生，或從上游 Release 的 zip 解壓 `resources\chunker-cli`）。
 
-完整的當地語系化技術文件（架構設計、詞條維護、除錯記錄）見 [I18N.md](I18N.md)。
+完整的當地語系化技術文件（架構設計、詞條維護、除錯記錄）見 [I18N.md](I18N.md)；
+上游更新時的快速漢化與建置操作手冊見 [DEVELOPMENT.md](DEVELOPMENT.md)。
 
 ### 🔄 與上游同步
 

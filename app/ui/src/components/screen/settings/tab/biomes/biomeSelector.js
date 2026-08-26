@@ -1,0 +1,53 @@
+import React, {PureComponent} from "react";
+import {createFilter} from "react-select";
+import CreatableSelect from "react-select/creatable";
+import {optimizeSelect} from "../blocks/optimizedOption";
+import {t} from "../../../../../i18n";
+
+const STYLES = {
+    container: (styles) => ({...styles, height: "100%"}), control: (styles) => ({...styles, height: "inherit"})
+};
+
+export class BiomeSelector extends PureComponent {
+    getOptions = () => {
+        return (this.props.suggestions ?? []).map(name => ({label: name, value: name}));
+    };
+
+    getValue = () => {
+        const identifier = this.props.identifier;
+        if (!identifier || identifier.length === 0) return null;
+        return this.getOptions().find(o => o.value === identifier) ?? {label: identifier, value: identifier};
+    };
+
+    onChange = (val) => {
+        this.props.onChange(val ? val.value : "");
+    };
+
+    isValidNewOption = (val) => {
+        if (this.props.allowCustom === false) return false;
+        if (val.indexOf(":") === -1 || val.indexOf(":") === val.length - 1) return false; // Must be valid namespace
+        if (val.startsWith("minecraft:")) return false; // Must not be minecraft namespace
+        return true; // Seems fine
+    };
+
+    formatCreateLabel = (val) => {
+        return t("selector.useCustomBiome", {value: val});
+    };
+
+    render() {
+        return (<CreatableSelect
+                filterOption={createFilter({ignoreAccents: false})}
+                placeholder={this.props.placeholder ?? t("selector.selectBiome")}
+                isClearable
+                options={this.getOptions()}
+                value={this.getValue()}
+                onChange={this.onChange}
+                isDisabled={this.props.disabled}
+                noOptionsMessage={() => t("selector.noOptions")}
+                styles={STYLES}
+                components={optimizeSelect.components}
+                isValidNewOption={this.isValidNewOption}
+                formatCreateLabel={this.formatCreateLabel}
+            />);
+    }
+}

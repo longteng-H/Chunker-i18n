@@ -1,0 +1,52 @@
+{
+  "name": "chunker-ui",
+  "private": true,
+  "description": "React based interface for the Chunker electron app.",
+  "author": "Hive Games Limited <chunker-public@hivemc.com>",
+  "license": "MIT",
+  "homepage": "./",
+  "scripts": {
+    "prestart": "node scripts/process-block-data.js",
+    "start": "react-scripts start",
+    "prebuild": "node scripts/process-block-data.js",
+    "build": "react-scripts build",
+    "eslint": "eslint src/**/*.js",
+    "test": "react-scripts test"
+  },
+  "dependencies": {
+    "@fortawesome/free-solid-svg-icons": "^7.3.0",
+    "@fortawesome/react-fontawesome": "^3.4.0",
+    "base64-arraybuffer": "^1.0.2",
+    "chroma-js": "^3.2.0",
+    "file-saver": "^2.0.5",
+    "jszip": "^3.10.1",
+    "leaflet": "^1.9.4",
+    "leaflet-draw": "^1.0.4",
+    "leaflet-fullscreen": "^1.0.2",
+    "leaflet-mouse-position": "^1.2.0",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.7",
+    "react-router-dom": "^7.18.1",
+    "react-scripts": "^5.0.1",
+    "react-select": "^5.10.2",
+    "seedrandom": "^3.0.5"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+  }
+}

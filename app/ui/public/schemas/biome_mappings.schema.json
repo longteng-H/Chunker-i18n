@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "https://chunker.app/schemas/biomes_mappings.schema.json",
+  "type": "object",
+  "title": "Biome Mappings",
+  "description": "Provides mappings for mapping one biome to another",
+  "default": {
+  },
+  "examples": [
+    {
+      "minecraft:beach": "minecraft:deep_cold_ocean",
+      "minecraft:dark_forest": "minecraft:forest"
+    },
+    {
+      "minecraft:beach": "minecraft:deep_cold_ocean"
+    }
+  ],
+  "patternProperties": {
+    "^\\$.*": true,
+    "^[\\w-]+:[\\w-]+": {
+      "type": "string",
+      "pattern": "^[\\w-]+:[\\w-]+"
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,79 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "https://chunker.app/schemas/custom_dimensions.schema.json",
+  "type": "object",
+  "title": "Custom Dimension",
+  "description": "Provides mappings for custom dimension(s)",
+  "default": {
+    "dimensions": []
+  },
+  "examples": [
+    {
+      "dimensions": [
+        {
+          "identifier": "my:custom_dim",
+          "biomeHeight": 24,
+          "fallbackBiome": "minecraft:plains"
+        }
+      ]
+    },
+    {
+      "dimensions": [
+        {
+          "identifier": "my:custom_dim1",
+          "biomeHeight": 24,
+          "fallbackBiome": "minecraft:plains"
+        },
+        {
+          "identifier": "my:custom_dim2",
+          "biomeHeight": 24,
+          "fallbackBiome": "minecraft:plains"
+        }
+      ]
+    }
+  ],
+  "required": [
+    "dimensions"
+  ],
+  "properties": {
+    "dimensions": {
+      "type": "array",
+      "examples": [
+        [
+          {
+            "identifier": "my:custom_dim",
+            "biomeHeight": 24,
+            "fallbackBiome": "minecraft:plains"
+          }
+        ]
+      ],
+      "items": {
+        "type": "object",
+        "title": "Custom Dimension",
+        "description": "Sets which custom dimensions should exist in this world",
+        "required": [
+          "identifier",
+          "biomeHeight"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "identifier": {
+            "type": "string",
+            "pattern": "^[\\w-]+:[\\w-]+$",
+            "description": "Namespaced identifier in the format namespace:id"
+          },
+          "biomeHeight": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 256,
+            "description": "The number of biome sections in this dimension"
+          },
+          "fallbackBiome": {
+            "type": "string",
+            "description": "The namespaced biome used when a biome can't be written. Defaults to minecraft:plains."
+          }
+        }
+      }
+    }
+  }
+}

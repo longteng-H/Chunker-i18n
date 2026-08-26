@@ -1,0 +1,476 @@
+{
+  "World Settings": {
+    "Difficulty": {
+      "display": "游戏难度",
+      "description": "世界的难度。",
+      "type": "Radio",
+      "options": [
+        {
+          "name": "和平",
+          "color": "blue",
+          "value": 0
+        },
+        {
+          "name": "简单",
+          "color": "green",
+          "value": 1
+        },
+        {
+          "name": "普通",
+          "color": "yellow",
+          "value": 2
+        },
+        {
+          "name": "困难",
+          "color": "red",
+          "value": 3
+        }
+      ]
+    },
+    "GameType": {
+      "display": "游戏模式",
+      "description": "世界的默认游戏模式。",
+      "type": "Radio",
+      "options": [
+        {
+          "name": "生存",
+          "color": "green",
+          "value": 0
+        },
+        {
+          "name": "冒险",
+          "color": "yellow",
+          "value": 2
+        },
+        {
+          "name": "创造",
+          "color": "red",
+          "value": 1
+        },
+        {
+          "name": "旁观",
+          "color": "blue",
+          "value": 3
+        }
+      ]
+    },
+    "GeneratorType": {
+      "display": "世界生成器",
+      "description": "用于生成新区块的生成器类型。"
+    },
+    "LevelName": {
+      "display": "世界名称",
+      "description": "在世界选择界面显示的名称。"
+    },
+    "RandomSeed": {
+      "display": "世界种子",
+      "type": "Int64",
+      "description": "用于生成世界的种子。",
+      "bigger": true
+    },
+    "SpawnX": {
+      "display": "出生点 X",
+      "description": "玩家出生时使用的 X 坐标。"
+    },
+    "SpawnY": {
+      "display": "出生点 Y",
+      "description": "玩家出生时使用的 Y 坐标。"
+    },
+    "SpawnZ": {
+      "display": "出生点 Z",
+      "description": "玩家出生时使用的 Z 坐标。"
+    },
+    "Time": {
+      "display": "时间",
+      "description": "世界中当前的刻（tick）数。",
+      "min": 0
+    },
+    "hardcore": {
+      "display": "极限模式",
+      "description": "为此世界启用极限模式。"
+    },
+    "MapFeatures": {
+      "display": "地图特性",
+      "description": "世界生成时是否启用结构生成。"
+    },
+    "experimentalgameplay": {
+      "display": "实验性玩法",
+      "description": "启用实验性玩法特性。"
+    },
+    "initialized": {
+      "display": "已初始化",
+      "description": "此世界是否已完成初始化。"
+    },
+    "bonusChestEnabled": {
+      "display": "启用奖励箱",
+      "description": "此世界是否启用了奖励箱。"
+    },
+    "bonusChestSpawned": {
+      "display": "奖励箱已生成",
+      "description": "奖励箱是否已经生成过。"
+    },
+    "spawnMobs": {
+      "display": "生成生物",
+      "description": "是否允许生物自然生成。"
+    },
+    "NetherScale": {
+      "display": "下界比例",
+      "description": "下界与主世界的坐标比例"
+    },
+    "BorderCenterX": {
+      "display": "世界边界中心 X",
+      "description": "世界边界中心的 X 坐标。"
+    },
+    "BorderCenterZ": {
+      "display": "世界边界中心 Z",
+      "description": "世界边界中心的 Z 坐标。"
+    },
+    "BorderDamagePerBlock": {
+      "display": "世界边界每格伤害",
+      "description": "世界边界每扩大一格造成的伤害量。"
+    },
+    "BorderSafeZone": {
+      "display": "世界边界安全区",
+      "description": "世界边界安全区的半径。"
+    },
+    "BorderSize": {
+      "display": "世界边界大小",
+      "description": "世界边界的半径。"
+    },
+    "BorderSizeLerpTarget": {
+      "display": "世界边界目标大小",
+      "description": "世界边界将要过渡到的新大小。"
+    },
+    "BorderSizeLerpTime": {
+      "display": "世界边界剩余时间",
+      "description": "世界边界移动过程的剩余时间（毫秒）。"
+    },
+    "BorderWarningBlocks": {
+      "display": "世界边界警告范围",
+      "description": "距离世界边界多近时玩家会开始看到视觉警告。"
+    },
+    "BorderWarningTime": {
+      "display": "世界边界警告时间",
+      "description": "玩家看到视觉警告前的提前时间（秒）。"
+    }
+  },
+  "Game Rules": {
+    "commandblockoutput": {
+      "display": "命令方块输出",
+      "description": "命令方块是否应在聊天中向在线管理员输出信息。"
+    },
+    "commandblocksenabled": {
+      "display": "启用命令方块",
+      "description": "此世界是否启用命令方块。"
+    },
+    "commandsEnabled": {
+      "display": "启用命令",
+      "description": "此世界是否启用命令/作弊。"
+    },
+    "dodaylightcycle": {
+      "display": "日夜循环",
+      "description": "一天中的时间是否循环，禁用后时间将保持不变。"
+    },
+    "doentitydrops": {
+      "display": "生物掉落物",
+      "description": "实体被杀死时是否掉落物品。"
+    },
+    "dofiretick": {
+      "display": "火焰蔓延",
+      "description": "火是否应蔓延，禁用后火不会蔓延。"
+    },
+    "doimmediaterespawn": {
+      "display": "立即重生",
+      "description": "是否立即重生，否则将显示重生界面。"
+    },
+    "doinsomnia": {
+      "display": "失眠症",
+      "description": "幻翼是否会在夜间生成。"
+    },
+    "domobloot": {
+      "display": "生物战利品",
+      "description": "生物被杀死时是否掉落物品。"
+    },
+    "domobspawning": {
+      "display": "生物生成",
+      "description": "生物是否应在世界中自然生成。"
+    },
+    "dotiledrops": {
+      "display": "方块掉落物",
+      "description": "方块被破坏时是否掉落物品。"
+    },
+    "doweathercycle": {
+      "display": "天气循环",
+      "description": "天气是否循环，禁用后世界中不会再有天气变化。"
+    },
+    "doLimitedCrafting": {
+      "display": "限制合成",
+      "description": "玩家是否只能合成已解锁配方的物品。"
+    },
+    "drowningdamage": {
+      "display": "溺水伤害",
+      "description": "世界中是否启用溺水伤害。"
+    },
+    "falldamage": {
+      "display": "摔落伤害",
+      "description": "世界中是否启用摔落伤害。"
+    },
+    "firedamage": {
+      "display": "火焰伤害",
+      "description": "世界中是否启用火焰伤害。"
+    },
+    "ForceGameType": {
+      "display": "强制游戏模式",
+      "description": "是否对所有玩家强制使用世界的默认游戏模式。"
+    },
+    "functioncommandlimit": {
+      "display": "函数命令上限",
+      "description": "一个函数文件中可以使用的命令数量上限。"
+    },
+    "keepinventory": {
+      "display": "保留物品栏",
+      "description": "玩家死亡时是否保留物品栏。"
+    },
+    "mobgriefing": {
+      "display": "生物破坏",
+      "description": "是否允许生物破坏世界（如苦力怕爆炸）。"
+    },
+    "naturalregeneration": {
+      "display": "自然生命恢复",
+      "description": "饥饿值满时玩家是否自然恢复生命值。"
+    },
+    "randomtickspeed": {
+      "display": "随机刻速度",
+      "description": "游戏使用的随机刻速度，设为 0 可禁用随机刻。",
+      "min": 0,
+      "max": 4096
+    },
+    "sendcommandfeedback": {
+      "display": "发送命令反馈",
+      "description": "命令是否应在聊天中向在线管理员输出反馈。"
+    },
+    "showcoordinates": {
+      "display": "显示坐标",
+      "description": "客户端是否可以看到坐标信息。"
+    },
+    "showdeathmessages": {
+      "display": "显示死亡消息",
+      "description": "是否在聊天中显示死亡消息。"
+    },
+    "tntexplodes": {
+      "display": "TNT 爆炸",
+      "description": "TNT 被点燃时是否可以爆炸。"
+    },
+    "announceAdvancements": {
+      "display": "公告进度",
+      "description": "获得进度时是否在聊天中显示。"
+    },
+    "disableElytraMovementCheck": {
+      "display": "禁用鞘翅移动检测",
+      "description": "是否禁用鞘翅的高级移动检测。"
+    },
+    "logAdminCommands": {
+      "display": "记录管理命令",
+      "description": "是否将管理命令记录到服务器日志。"
+    },
+    "reducedDebugInfo": {
+      "display": "简化调试信息",
+      "description": "调试界面（F3）是否显示简化的信息。"
+    },
+    "spectatorsGenerateChunks": {
+      "display": "旁观者生成区块",
+      "description": "旁观者是否会触发新区块的生成。"
+    },
+    "spawnradius": {
+      "display": "出生半径",
+      "description": "从出生点 X、Y、Z 中选择出生位置时使用的半径。",
+      "min": 0
+    },
+    "maxEntityCramming": {
+      "display": "实体挤压上限",
+      "description": "一个方块内最多容纳多少个实体才会开始受到挤压伤害。",
+      "min": 0
+    },
+    "maxCommandChainLength": {
+      "display": "命令链长度上限",
+      "description": "从一个命令方块出发最多可以连续执行多少个连锁命令方块。",
+      "min": 0
+    },
+    "gameLoopFunction": {
+      "display": "游戏循环函数",
+      "description": "Minecraft 游戏循环中调用的函数。"
+    }
+  },
+  "Restrictions": {
+    "ConfirmedPlatformLockedContent": {
+      "display": "已确认平台锁定内容",
+      "description": "此内容是否被平台锁定。"
+    },
+    "hasBeenLoadedInCreative": {
+      "display": "曾以创造模式加载",
+      "description": "此地图之前是否以创造模式加载过。"
+    },
+    "hasLockedBehaviorPack": {
+      "display": "含锁定行为包",
+      "description": "行为包是否已锁定。"
+    },
+    "hasLockedResourcePack": {
+      "display": "含锁定资源包",
+      "description": "资源包是否已锁定。"
+    },
+    "immutableWorld": {
+      "display": "不可变世界",
+      "description": "指示此世界能否被修改。"
+    },
+    "isFromLockedTemplate": {
+      "display": "来自锁定模板",
+      "description": "此地图是否由锁定的模板创建。"
+    },
+    "isFromWorldTemplate": {
+      "display": "来自世界模板",
+      "description": "此地图是否由世界模板创建。"
+    },
+    "isWorldTemplateOptionLocked": {
+      "display": "世界模板选项已锁定",
+      "description": "世界模板选项是否已锁定。"
+    },
+    "LimitedWorldOriginX": {
+      "display": "旧版有限世界原点 X",
+      "description": "旧版数据，指示有限世界生成起始位置的 X 坐标。"
+    },
+    "LimitedWorldOriginY": {
+      "display": "旧版有限世界原点 Y",
+      "description": "旧版数据，指示有限世界生成起始位置的 Y 坐标。"
+    },
+    "LimitedWorldOriginZ": {
+      "display": "旧版有限世界原点 Z",
+      "description": "旧版数据，指示有限世界生成起始位置的 Z 坐标。"
+    },
+    "MultiplayerGame": {
+      "display": "多人游戏",
+      "description": "这是否是一个多人游戏世界。"
+    },
+    "texturePacksRequired": {
+      "display": "必须使用纹理包",
+      "description": "此地图是否必须使用纹理包。"
+    },
+    "XBLBroadcastIntent": {
+      "display": "Xbox 广播意图",
+      "description": "Xbox 广播范围，1 为仅受邀请者，2 为好友，3 为好友的好友。"
+    },
+    "DifficultyLocked": {
+      "display": "难度已锁定",
+      "description": "客户端是否可以修改此世界的难度。"
+    }
+  },
+  "Weather": {
+    "lightningLevel": {
+      "display": "闪电强度",
+      "description": "决定闪电的强度。"
+    },
+    "lightningTime": {
+      "display": "闪电计时",
+      "description": "距下次触发闪电的刻数。"
+    },
+    "rainLevel": {
+      "display": "降雨强度",
+      "description": "决定降雨的大小。"
+    },
+    "rainTime": {
+      "display": "降雨计时",
+      "description": "距下次触发降雨的刻数。"
+    },
+    "raining": {
+      "display": "正在下雨",
+      "description": "世界中当前是否在下雨。"
+    },
+    "thundering": {
+      "display": "正在打雷",
+      "description": "世界中当前是否有雷暴。"
+    },
+    "thunderTime": {
+      "display": "打雷计时",
+      "description": "距下次触发雷暴的刻数。"
+    },
+    "clearWeatherTime": {
+      "display": "晴天计时",
+      "description": "距下次触发晴天的刻数。"
+    },
+    "DayTime": {
+      "display": "白天时间",
+      "description": "当前一天中的时间，0 为日出，6000 为正午，12000 为日落"
+    }
+  },
+  "Misc": {
+    "CenterMapsToOrigin": {
+      "display": "地图居中到原点",
+      "description": "地图是否应以地图原点为中心。"
+    },
+    "educationFeaturesEnabled": {
+      "display": "教育版功能",
+      "description": "此地图是否启用了教育版功能。"
+    },
+    "eduLevel": {
+      "display": "教育版等级",
+      "description": "要使用的教育版功能等级。"
+    },
+    "prid": {
+      "display": "prid",
+      "description": "此地图的产品 ID。"
+    },
+    "serverChunkTickRange": {
+      "display": "服务器区块刻范围",
+      "description": "服务端进行区块刻运算的范围（区块数）。"
+    },
+    "startWithMapEnabled": {
+      "display": "新玩家自带地图",
+      "description": "新玩家进入世界时是否自带一张地图。"
+    },
+    "worldStartCount": {
+      "display": "世界启动次数",
+      "description": "世界被启动的次数（用于实体 ID）"
+    },
+    "useMsaGamertagsOnly": {
+      "display": "仅限微软账户",
+      "description": "此世界是否仅限 Microsoft 账户进入（不支持本地游玩）。"
+    },
+    "MultiplayerGame": {
+      "display": "启用多人游戏",
+      "description": "这是否是一个多人游戏世界。"
+    },
+    "MultiplayerGameIntent": {
+      "display": "对多人游戏可见",
+      "description": "此世界是否应广播多人游戏意图。"
+    },
+    "XBLBroadcastIntent": {
+      "display": "微软服务可见性",
+      "description": "通过微软服务访问此世界的可见性。",
+      "type": "Radio",
+      "options": [
+        {
+          "name": "仅邀请",
+          "color": "red",
+          "value": 1
+        },
+        {
+          "name": "好友",
+          "color": "yellow",
+          "value": 2
+        },
+        {
+          "name": "共同好友",
+          "color": "green",
+          "value": 3
+        }
+      ]
+    },
+    "LANBroadcast": {
+      "display": "启用局域网广播",
+      "description": "此地图是否进行局域网广播。"
+    },
+    "LANBroadcastIntent": {
+      "display": "对局域网玩家可见",
+      "description": "此世界是否应广播局域网意图。"
+    }
+  }
+}

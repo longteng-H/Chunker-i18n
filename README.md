@@ -1,146 +1,129 @@
-# Chunker
+# Chunker 中文版 (Chunker i18n)
 
-**Convert Minecraft worlds between Java Edition and Bedrock Edition**
+**在 Java 版与基岩版之间转换 Minecraft 世界 —— 支持中文/英文切换的社区汉化版**
 
-Chunker is a Java application which allows you to convert Java and Bedrock Minecraft worlds. It provides a simple
-interface for converting worlds and allows you to upgrade and downgrade worlds between different versions of the
-game.
+> 本项目基于 [HiveGamesOSS/Chunker](https://github.com/HiveGamesOSS/Chunker) 1.19.1 的源码进行汉化，
+> 上游项目由 Hive Games 维护并接受 Mojang Studios 资助。若你需要官方英文原版，请访问上游仓库。
+>
+> This is a community Chinese-localized fork of Chunker. For the official English version, visit
+> [HiveGamesOSS/Chunker](https://github.com/HiveGamesOSS/Chunker). [English](#english)
 
-Supported Formats:
+---
 
-- Bedrock
-    - 1.12.0
-    - 1.13.0
-    - 1.14.0 - 1.14.60
-    - 1.16.0 - 1.16.220
-    - 1.17.0 - 1.17.40
-    - 1.18.0 - 1.18.30
-    - 1.19.0 - 1.19.80
-    - 1.20.0 - 1.20.80
-    - 1.21.0 - 1.21.130
-    - 1.26.0 - 1.26.40
-- Java
-    - 1.8.8
-    - 1.9.0 - 1.9.3
-    - 1.10.0 - 1.10.2
-    - 1.11.0 - 1.11.2
-    - 1.12.0 - 1.12.2
-    - 1.13.0 - 1.13.2
-    - 1.14.0 - 1.14.4
-    - 1.15.0 - 1.15.2
-    - 1.16.0 - 1.16.5
-    - 1.17.0 - 1.17.1
-    - 1.18.0 - 1.18.2
-    - 1.19.0 - 1.19.4
-    - 1.20.0 - 1.20.6
-    - 1.21.0 - 1.21.11
-    - 26.1 - 26.3
+## ✨ 汉化内容
 
-**Microsoft Creator Docs:**
-https://learn.microsoft.com/en-us/minecraft/creator/documents/chunkeroverview?view=minecraft-bedrock-stable
+- **界面全量汉化**（约 450 条文本）：所有页面、按钮、报错提示、世界设置说明
+- **中英文一键切换**：页脚 `English | 简体中文`，即时生效，无需重启
+- **自动记忆**：语言偏好保存在本地，重启后保持
+- **智能默认**：首次启动按操作系统语言自动选择（中文系统默认简体中文）
+- **后端消息翻译**：转换进度、设置分类名等来自 Java 后端的文本同样翻译
+- **世界设置全汉化**：难度、游戏规则、天气、限制等全部设置项及悬停说明
 
-App Usage
---------
+## 📥 下载使用
 
-You can find pre-built copies of Chunker in the [releases section](https://github.com/HiveGamesOSS/Chunker/releases).
-Otherwise, see the building section on how to build Chunker yourself.
+前往 [Releases](../../releases) 页面下载：
 
-Download the appropriate version of the application depending on your operating system and then you will be able to run
-the electron based frontend for Chunker.
+| 文件 | 说明 |
+|---|---|
+| `Chunker-x.x.x-i18n.exe` | Windows 便携版，双击即用（x64） |
+| `Chunker-x.x.x-i18n-windows-x86.zip` | Windows 免安装解压版 |
 
-Chunker defaults to a maximum of 75% of available memory, you can customise this by specifying the amount when launching
-Chunker e.g. `Chunker.exe -Xmx8G` for 8 gigabytes.
+**系统要求**：Windows 10/11（64 位）。程序内置 Java 运行时，无需额外安装。
 
-Chunker forwards `-Xmx` and `-Xms` to the backing JVM, if you wish to supply other options use `--java-options="..."`.
+**切换语言**：启动后拖动页面到底部页脚，点击 `简体中文` 或 `English` 即可切换。
 
-CLI Usage
---------
+## 🛠️ 从源码构建
 
-**Requirements**
+**要求**：Node.js 18+（前端）、JDK 17+（可选，仅重新编译 Java 后端时需要）
 
-- Java 17 or higher
+```powershell
+# 1. 构建前端 UI
+cd app\ui
+npm install
+npm run build
 
-You can find pre-built copies of Chunker in the [releases section](https://github.com/HiveGamesOSS/Chunker/releases).
-Otherwise, see the building section on how to build Chunker yourself.
+# 2. 打包 Windows 桌面应用（产物在 app\electron\dist\）
+cd ..\electron
+npm install
+npm run publish
+```
 
-Chunker can be run as a command-line application or as a UI, to use Chunker as a command line application run it as so:
+> 提示：Electron 打包需要 `cli\build\libs\packaged` 目录下有已打包的 Java 后端
+> （可用 `gradlew build` 从源码生成，或从上游 Release 的 zip 中提取 `resources\chunker-cli`）。
 
-`java -jar chunker-cli-VERSION.jar -i "my_world" -f BEDROCK_1_20_80 -o output`
+完整的汉化技术文档（架构设计、词条维护、踩坑记录）见 [I18N.md](I18N.md)。
 
-The following parameters are required:
+## 🔄 与上游同步
 
-- `-i` / `--inputDirectory` - the path relative to the application which should be used as the input directory.
-- `-o` / `--outputDirectory` - the path relative to the application which should be used as the output directory.
-- `-f` / `--outputFormat` - the output format to convert the world to in the form `EDITION_X_Y_Z`,
-  e.g. `JAVA_1_20_5`, `JAVA_1_20`, `BEDROCK_1_19_30`, `INPUT` to match the input version.
+```powershell
+git remote add upstream https://github.com/HiveGamesOSS/Chunker.git
+git fetch upstream
+git merge upstream/master   # 解决冲突后 git push
+```
 
-Additionally, the following parameters are supported:
+上游更新后，通常只需检查：新增界面文本是否已补入 `app/ui/src/i18n/locales/` 两份词条文件、
+世界设置数据文件结构是否变化。
 
-- `-m` / `--blockMappings` - a path to a json file or a json object containing block mappings.
-- `-s` / `--worldSettings` - a path to a json file or a json object containing world settings.
-- `-p` / `--pruning` - a path to a json file or a json object containing pruning settings.
-- `-c` / `--converterSettings` - a path to a json file or a json object containing converter settings.
-- `-r` / `--dimensionRegistry` - a path to a json file or a json object containing custom dimension definitions.
-- `-d` / `--dimensionMappings` - a path to a json file or a json object containing dimension mappings.
-- `-b` / `--biomeMappings` - a path to a json file or a json object containing biome mappings.
-- `-k` / `--keepOriginalNBT` - indicates that NBT should be copied from the input to output where processed by Chunker,
-  this is only supported where the output format is the same as the input and for optimal results you will want to copy
-  the input world to the output folder prior to conversion.
+## 📁 汉化相关目录
 
-You can export settings for your world by using the web interface on `https://chunker.app` through the Advanced
-Settings -> Converter Settings tab, the CLI also supports preloading settings from the input directory.
+```
+app/ui/src/i18n/                    # i18n 核心 + 中英词条
+app/ui/src/.../world_settings/      # 世界设置数据（settings.json / settings.zh-CN.json）
+app/electron/src/version.json       # 构建版本信息（自动生成，勿手动编辑）
+I18N.md                             # 汉化开发文档
+```
 
-You can also get Chunker to list available formats by providing an incorrect input,
-e.g. `java -jar chunker-VERSION.jar -f ?`.
+## ⚠️ 已知限制
 
-Building
---------
+继承上游的限制：实体（画与展示框除外）、结构数据（村庄/要塞等）暂不支持转换。
 
-**Requirements**
+汉化相关：Java 命令行界面（CLI）为英文；世界预览地图的图层控件在切换语言后需重新进入预览页刷新。
 
-- Git
-- Java 17 or higher
-- Gradle (Optional)
+## 📄 许可证与致谢
 
-**Note:** Chunker is split into `app` and `cli`, the app provides an electron frontend for the application and the cli
-is a pure java application which can be used for conversion / integrating conversion.
+- 原项目 [Chunker](https://github.com/HiveGamesOSS/Chunker) 由 [Hive Games](https://hivegames.io) 开发，MIT 协议授权
+- 本 fork 遵循相同的 [MIT 协议](LICENSE)
+- 汉化工作与上游官方无关，问题反馈请优先到本仓库的 Issues
 
-**Steps**
+---
 
-1. Clone this repository via `git clone git://github.com/HiveGamesOSS/Chunker.git`.
-2. Build the project via `./gradlew build`.
-3. Obtain the binary from `build/libs/` (either as a CLI jar, native CLI executable or with the electron frontend).
+<a name="english"></a>
+# Chunker i18n (English)
 
-Chunker also uses its own fork of a Java LevelDB implementation, https://github.com/HiveGamesOSS/leveldb-mcpe-java/.
+A community fork of [Chunker](https://github.com/HiveGamesOSS/Chunker) 1.19.1 adding full Simplified Chinese localization with a language switcher.
 
-Testing
---------
+## Localization Highlights
 
-Chunker attempts to do automated testing where possible to validate data, an example of this is block identifiers are
-validated against the palette of the Bedrock and Java, this allows issues with faulty mappings to be identified in the
-build process. You can skip tests in the build process by appending `-x test` to the `./gradlew build` command.
+- ~450 translated strings covering every screen, button, error message and world setting description
+- One-click language switching in the footer (`English | 简体中文`), applied instantly
+- Preference persisted locally; auto-detects system language on first launch
+- Backend-pushed texts (progress names, settings categories) are translated as well
 
-Some tests have been excluded from the default test suite marked with the "LongRunning" tag, this is because they can
-take several minutes to fully complete.
+## Download
 
+Grab `Chunker-x.x.x-i18n.exe` (portable, Windows x64) from the [Releases](../../releases) page.
+The app bundles its own Java runtime — no extra installation required.
 
-Currently unsupported features
---------
-The following features do not convert (or have limited conversion) when using Chunker:
+## Building from Source
 
-- Entities (excluding paintings / item frames).
-- Structure data (e.g. Villages / Strongholds).
+```powershell
+cd app\ui;       npm install; npm run build
+cd app\electron; npm install; npm run publish   # output in app\electron\dist\
+```
 
-License and Legal
---------
+Electron packaging expects a packaged Java backend at `cli\build\libs\packaged`
+(build it with `gradlew build`, or extract `resources\chunker-cli` from an upstream release zip).
+See [I18N.md](I18N.md) for the full localization engineering notes (in Chinese).
 
-The project is MIT licensed you can find details in the [LICENSE](LICENSE).
+## Syncing with Upstream
 
-This project is maintained by Hive Games. This project receives funding from Mojang Studios. Mojang Studios and it's
-parent company Microsoft assume no responsibility for the contents of this project.
+```powershell
+git remote add upstream https://github.com/HiveGamesOSS/Chunker.git
+git fetch upstream && git merge upstream/master
+```
 
-We're hiring!
---------
+## License & Credits
 
-Join Hive Games, the company that maintains Chunker, 'The Hive' Minecraft featured server, and more!
-[Check out our hiring page.](https://jobs.playhive.com/software-engineer-java-186860/)
+Original Chunker by [Hive Games](https://hivegames.io), MIT licensed.
+This fork is distributed under the same [MIT license](LICENSE).
+The localization is a community effort, not affiliated with Hive Games or Mojang Studios.

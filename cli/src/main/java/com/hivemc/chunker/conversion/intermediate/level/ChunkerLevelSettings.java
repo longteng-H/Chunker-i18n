@@ -182,6 +182,13 @@ public class ChunkerLevelSettings {
     @Hidden
     public boolean AutumnDrop2026 = false;
 
+    @CustomType
+    @Category(Category.Type.WORLD_SETTINGS)
+    @Bedrock
+    @Java
+    @Hidden
+    public boolean WinterDrop2026 = false;
+
     @Bedrock
     @Category(Category.Type.GAME_RULES)
     public boolean falldamage = true;
@@ -299,6 +306,11 @@ public class ChunkerLevelSettings {
     @Bedrock
     @Category(Category.Type.WORLD_SETTINGS)
     public int NetherScale = 8;
+
+    @Bedrock
+    @CustomType
+    @Category(Category.Type.RESTRICTIONS)
+    public int playerPermissionsLevel = 2;
 
     @Bedrock
     @Category(Category.Type.WEATHER)
@@ -887,6 +899,7 @@ public class ChunkerLevelSettings {
                 ", MultiplayerGameIntent=" + MultiplayerGameIntent +
                 ", naturalregeneration=" + naturalregeneration +
                 ", NetherScale=" + NetherScale +
+                ", playerPermissionsLevel=" + playerPermissionsLevel +
                 ", rainLevel=" + rainLevel +
                 ", rainTime=" + rainTime +
                 ", RandomSeed='" + RandomSeed + '\'' +

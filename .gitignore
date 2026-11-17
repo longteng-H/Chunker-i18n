@@ -37,3 +37,10 @@ build/
 
 # Testing
 output/
+
+# i18n 发布产物（本地构建，不进仓库）
+/release/
+
+# 本地构建的安装包不进仓库
+app/electron/*.zip
+app/electron/*.exe

@@ -65,7 +65,7 @@ backend.*       后端来源字符串映射（键 = 英文原文）
 ### 2.1 首次配置（只需一次）
 
 ```powershell
-cd F:\Chunker\Chunker-1.19.1-i18n
+cd F:\Chunker\Chunker-1.21.0-i18n
 git remote add upstream https://github.com/HiveGamesOSS/Chunker.git
 ```
 
@@ -81,7 +81,7 @@ git merge upstream/master        # 若上游默认分支为 main 则相应替换
 | 冲突文件类型 | 策略 |
 |---|---|
 | 上游新增的组件/文件（我方未改过） | 直接采用上游，随后按第 1 节规范补 `t()` 与词条 |
-| 双方都改过的组件（约 25 个已汉化文件，清单见 I18N.md 第三节） | **以上游版本为基础**，重新套用 `t()` 替换（参考 `git show 1ffc5c8 -- <文件>` 查看当初改法） |
+| 双方都改过的组件（约 25 个已汉化文件，清单见 I18N.md 第三节） | **以上一版汉化代码为基线**，把上游改动逐条合并回来（推荐，比重新套 `t()` 更不易漏；1.21.0 迁移即用此法，见 I18N.md 第七节）。也可用 `diff 上一版/新上游 <文件>` 看清上游到底动了哪几行 |
 | `settings.json`（世界设置英文数据） | 采用上游结构，将**新增/变更的键**同步进 `settings.zh-CN.json` |
 | `app/electron/package.json` | 保留我方 `artifactName` 行，接受上游其他改动；注意比对 `version` 号 |
 | `app/electron/src/version.json` | 不会冲突（gitignored，构建钩子自动生成） |
@@ -140,6 +140,30 @@ cd ..\electron;  npm install; npm run publish
   - 上游大版本更新（后端有变）→ 用 `gradlew build` 重新生成（需 JDK 17+）
   - 仅 UI 更新 → 复用旧后端：从上游 Release 的 zip 提取 `resources\chunker-cli` 放入该目录
 - `win-unpacked\` 目录为免安装版，可用于快速自测
+- 只更新了 UI 时也可以只补后端镜像：`gradle :cli:jpackage`（跳过 electron 那一层，快很多）
+
+### 4.2.1 国内网络下的三条硬坑（实测 2026-11，Win11 + JDK17）
+
+| 卡点 | 现象 | 解法 |
+|---|---|---|
+| Gradle 发行包 | `./gradlew` 报 `Downloading … failed: timeout (10000ms)`，直连 services.gradle.org 只回 307 后超时 | 从镜像手动下发行包，用绝对路径跑 gradle：`curl -L -o g.zip https://mirrors.cloud.tencent.com/gradle/gradle-9.8.0-bin.zip` → 解压 → `gradle-9.8.0/bin/gradle :cli:jpackage`（不改仓库里的 wrapper 配置） |
+| electron-builder 附属二进制 | 打包时报 `Response code 502 (Bad Gateway)`，走系统代理必挂（代理对 GitHub Release 资源回 502） | ① 加镜像前缀：`ELECTRON_BUILDER_BINARIES_MIRROR="https://gh-proxy.org/https://github.com/electron-userland/electron-builder-binaries/releases/download/"`；② 或**临时清掉代理环境变量**（`env -u http_proxy -u https_proxy …`）让 builder 直连，GitHub 直连是通的 |
+| 输出目录被安全策略拦住 | `rm -rf dist` / builder 自己的 `fs.rm(dist\win-unpacked)` 报 `SAFE_DELETE_BULK_CONFIRM_REQUIRED`（>50 文件） | 不清空旧目录，改用新输出目录：`npx electron-builder -c.directories.output=out`；旧目录用 `mv` 挪走即可 |
+| Maven 依赖 | 一般无碍（repo.maven.apache.org 直连 200），不通就换 `https://maven.aliyun.com/repository/public` |
+
+### 4.2.2 能出哪些产物（以官方 Release 为基准）
+
+| 产物 | 官方文件名 | 本机（Windows x64） |
+|---|---|---|
+| Windows 便携单文件 | `Chunker-<ver>-windows-x86.exe` | ✅ 出得了 → `Chunker-<ver>-i18n-windows-x64.exe`（约 152 MB） |
+| Windows 免安装目录 | `Chunker-<ver>-windows-x86.zip` | ✅ 出得了 → `Chunker-<ver>-i18n-windows-x64.zip`（约 228 MB） |
+| Windows arm64 | `-windows-arm64.exe/.zip` | ❌ 需 arm64 的 JDK/jpackage 才能生成 arm64 运行时镜像 |
+| Linux amd64/arm64（AppImage / deb / unpacked） | `-amd64-linux.AppImage` 等 | ❌ jpackage 只能产出宿主系统镜像，且 AppImage/deb 要 Linux 工具链；本机 WSL 被安全策略禁用 |
+| macOS（dmg / zip） | `-amd64-mac.dmg` 等 | ❌ 同上，需 macOS |
+
+结论：**要凑齐官方那套全平台产物，走 `.github/workflows/release.yml`（GitHub Actions）最靠谱**，
+里面已按平台矩阵分别 `gradlew build` + electron-builder，Windows/Linux/mac/arm64 一次齐活。
+本机只负责 Windows x64（及以上三项之外的验证工作）。
 
 ### 4.3 冒烟测试清单
 
@@ -156,7 +180,7 @@ cd ..\electron;  npm install; npm run publish
 
 1. 提交并推送：`git add -A; git commit -m "..."; git push`
 2. GitHub 网页 → Releases → Draft a new release
-   - Tag：`v<上游版本>`（如 `v1.19.1`）
+   - Tag：`v<上游版本>`（如 `v1.21.0`）
    - 附件：`Chunker-<版本>-i18n.exe`（及可选 zip 解压版）
 3. Release 说明模板：
 
@@ -186,7 +210,8 @@ git grep -n "showError(\"[A-Z]" -- app/ui/src
 git fetch upstream; git merge upstream/master
 
 # 查看某文件当初的汉化改法
-git show 1ffc5c8 -- app/ui/src/components/screen/save/saveScreen.js
+# 对比上一版汉化代码与新版上游的差异（找出上游真正改动的行）
+diff -u ../Chunker-1.19.1-i18n/app/ui/src/components/screen/save/saveScreen.js app/ui/src/components/screen/save/saveScreen.js
 
 # 构建 UI / 打包 exe
 cd app\ui; npm run build

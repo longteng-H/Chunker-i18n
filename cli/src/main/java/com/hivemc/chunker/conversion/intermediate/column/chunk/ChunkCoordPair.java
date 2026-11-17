@@ -14,7 +14,16 @@ public record ChunkCoordPair(int chunkX, int chunkZ) {
      * @return a 10-bit index.
      */
     public int to10BitIndex() {
-        return ((chunkX & 31) << 4) | (chunkZ & 31);
+        return ((chunkX & 31) << 5) | (chunkZ & 31);
+    }
+
+    /**
+     * Pack the signed X/Z pair into a primitive long for memory-efficient sets and maps.
+     *
+     * @return the packed coordinate.
+     */
+    public long toLong() {
+        return ((long) chunkX << 32) | (chunkZ & 0xFFFFFFFFL);
     }
 
     /**

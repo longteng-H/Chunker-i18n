@@ -2,7 +2,7 @@
 
 **在 Java 版与基岩版之间转换 Minecraft 世界 —— 支持中文/英文切换的社区汉化版**
 
-> 本项目基于 [HiveGamesOSS/Chunker](https://github.com/HiveGamesOSS/Chunker) 1.19.1 的源码进行汉化，
+> 本项目基于 [HiveGamesOSS/Chunker](https://github.com/HiveGamesOSS/Chunker) 1.21.0 的源码进行汉化，
 > 上游项目由 Hive Games 维护并接受 Mojang Studios 资助。若你需要官方英文原版，请访问上游仓库。
 >
 > This is a community Chinese-localized fork of Chunker. For the official English version, visit
@@ -30,8 +30,8 @@
 
 | 文件 | 说明 |
 |---|---|
-| `Chunker-x.x.x-i18n.exe` | Windows 便携版，双击即用（x64） |
-| `Chunker-x.x.x-i18n-windows-x86.zip` | Windows 免安装解压版 |
+| `Chunker-x.x.x-i18n-windows-x64.exe` | Windows 便携版（单文件），双击即用 |
+| `Chunker-x.x.x-i18n-windows-x64.zip` | Windows 免安装解压版 |
 
 **系统要求**：Windows 10/11（64 位）。程序内置 Java 运行时，无需额外安装。
 
@@ -96,7 +96,7 @@ I18N.md                             # 汉化开发文档
 <a id="english"></a>
 ## English
 
-A community fork of [Chunker](https://github.com/HiveGamesOSS/Chunker) 1.19.1 adding full Simplified Chinese localization with a language switcher.
+A community fork of [Chunker](https://github.com/HiveGamesOSS/Chunker) 1.21.0 adding full Simplified Chinese localization with a language switcher.
 
 ### Localization Highlights
 
@@ -107,7 +107,7 @@ A community fork of [Chunker](https://github.com/HiveGamesOSS/Chunker) 1.19.1 ad
 
 ### Download
 
-Grab `Chunker-x.x.x-i18n.exe` (portable, Windows x64) from the [Releases](../../releases) page.
+Grab `Chunker-x.x.x-i18n-windows-x64.exe` (portable single file, Windows x64) from the [Releases](../../releases) page.
 The app bundles its own Java runtime — no extra installation required.
 
 ### Building from Source
@@ -140,7 +140,7 @@ The localization is a community effort, not affiliated with Hive Games or Mojang
 <a id="繁體中文"></a>
 ## 繁體中文
 
-Chunker 的社群繁體化分支，在上游 1.19.1 原始碼基礎上新增完整的中文在地化，並可於介面中一鍵切換語言。
+Chunker 的社群繁體化分支，在上游 1.21.0 原始碼基礎上新增完整的中文在地化，並可於介面中一鍵切換語言。
 
 ### ✨ 當地語系化內容
 
@@ -157,8 +157,8 @@ Chunker 的社群繁體化分支，在上游 1.19.1 原始碼基礎上新增完�
 
 | 檔案 | 說明 |
 |---|---|
-| `Chunker-x.x.x-i18n.exe` | Windows 可攜式版本，點擊即用（x64） |
-| `Chunker-x.x.x-i18n-windows-x86.zip` | Windows 免安裝解壓版 |
+| `Chunker-x.x.x-i18n-windows-x64.exe` | Windows 可攜式版本（單檔），點擊即用 |
+| `Chunker-x.x.x-i18n-windows-x64.zip` | Windows 免安裝解壓版 |
 
 **系統需求**：Windows 10/11（64 位元）。程式內建 Java 執行環境，無需額外安裝。
 

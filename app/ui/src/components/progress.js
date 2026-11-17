@@ -25,7 +25,7 @@ export class ProgressComponent extends Component {
         if (this.props.progress.isComplete()) {
             return (<div/>);
         } else {
-            if (this.props.progress.isErrored() || this.props.progress.isCancelled()) {
+            if (this.props.progress.isCancelled() || this.props.progress.isErrored()) {
                 return (<div>
                     {this.props.progress.isErrored() ? (<h3>{t("progress.taskFailed")}</h3>) : (
                         <h3>{t("progress.taskCancelled")}</h3>)}

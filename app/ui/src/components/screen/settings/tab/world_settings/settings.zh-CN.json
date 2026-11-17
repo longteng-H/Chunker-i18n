@@ -350,6 +350,28 @@
       "display": "多人游戏",
       "description": "这是否是一个多人游戏世界。"
     },
+    "playerPermissionsLevel": {
+      "display": "玩家权限",
+      "description": "玩家的默认权限等级，使用命令需要操作员权限。",
+      "type": "Radio",
+      "options": [
+        {
+          "name": "访客",
+          "color": "blue",
+          "value": 0
+        },
+        {
+          "name": "成员",
+          "color": "green",
+          "value": 1
+        },
+        {
+          "name": "操作员",
+          "color": "red",
+          "value": 2
+        }
+      ]
+    },
     "texturePacksRequired": {
       "display": "必须使用纹理包",
       "description": "此地图是否必须使用纹理包。"
